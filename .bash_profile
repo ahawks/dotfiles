@@ -16,8 +16,11 @@ function pgb {
 #alias __git_ps1="git branch 2>/dev/null | grep '*' | sed 's/* \(.*\)/(\1)/' 2>/dev/null"
 PROMPT_COMMAND="echo -n [\$(date +%H:%M:%S)]"
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
-PS1='[\!][\u@\h \W$ $(pgb)]\n\$ '
+#PS1='[\!][\u@\h \W$ $(pgb)]\n\$ '
 
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\!\[$(tput setaf 1)\]]\[$(tput sgr0)\]\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 5)\]\u@\h \[$(tput setaf 2)\]\W\[$(tput setaf 1)\]] \[$(tput setaf 4)\]$(pgb)\n\\$ \[$(tput sgr0)\]"
+#brian's ps1
+#PS1='\[\e[0;31m\][\[\e[1;31m\]\u\[\e[0;34m\]@\h \[\e[32m\]\w\[\e[0;31m]\]\n$\[\e[0m\] '
 
 ##
 # Your previous /Users/andrewhawks/.bash_profile file was backed up as /Users/andrewhawks/.bash_profile.macports-saved_2012-07-27_at_14:48:15
@@ -33,7 +36,7 @@ alias py.test='PYTHONPATH=${SUEZ_DIR}/server:${SUEZ_DIR}/testing py.test'
 
 # facts on git pull
 alias facts="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
-#alias python=ipython
+alias hg='history | grep $*'
 
 #alias mongotunnel='ssh -N mmf@build01.mapmyfitness.com -L27018:suez01-internal.mapmyfitness.com:27017'
 
