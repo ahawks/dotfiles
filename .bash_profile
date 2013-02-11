@@ -2,8 +2,9 @@ alias ll='ls -lG'
 alias ls='ls -G'
 #export PS1='\h:\W \u\$ ' #$(__git_ps1 "(%s)")'
 alias gvim="open -a /Applications/MacVim.app"
-alias te="open -a /Applications/TextEdit.app"
-alias govagrant='cd ~/developer_vm/vagrant'
+
+# add known_hosts to bash auto complete
+complete -W "$(echo `cat ~/.ssh/known_hosts |cut -f 1 -d ' ' |sed -e s/,.*//g |uniq |grep -v "\["`;)" ssh
 
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
@@ -16,7 +17,7 @@ function pgb {
 PROMPT_COMMAND="echo -n [\$(date +%H:%M:%S)]"
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 PS1='[\!][\u@\h \W$ $(pgb)]\n\$ '
-#PS1='[\u@\h \W]\$ '
+
 
 ##
 # Your previous /Users/andrewhawks/.bash_profile file was backed up as /Users/andrewhawks/.bash_profile.macports-saved_2012-07-27_at_14:48:15
