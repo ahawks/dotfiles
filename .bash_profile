@@ -35,3 +35,4 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 alias facts="elinks -dump randomfunfacts.com | sed -n '/^| /p' | tr -d \|"
 
 alias hg='history | grep $*'
+alias panama='cd ~/project/panama'
