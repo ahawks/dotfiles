@@ -13,8 +13,19 @@ function pgb {
     ref=$(git symbolic-ref HEAD 2> /dev/null) || return
     echo "("${ref#refs/heads/}")"
 }
+OLDTIME=`date +%s`
+function bash_funct {
+	NEWTIME=`date +%s`
+	TIMEDIFF=`expr $NEWTIME - $OLDTIME`
+	OLDTIME=$NEWTIME
+	echo -n "["
+	echo -n "$TIMEDIFF sec"
+	echo -n "]"
+}
+
 #alias __git_ps1="git branch 2>/dev/null | grep '*' | sed 's/* \(.*\)/(\1)/' 2>/dev/null"
-PROMPT_COMMAND="echo -n [\$(date +%H:%M:%S)]"
+PROMPT_COMMAND="bash_funct"
+#PROMPT_COMMAND='echo -n "[$(tput setaf 3)]$(date +%H:%M:%S)$(tput setaf 1)$(tput sgr0)]"'
 #PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 #PS1='[\!][\u@\h \W$ $(pgb)]\n\$ '
 
