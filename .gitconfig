@@ -8,7 +8,7 @@
     #lg = log -p
        # Merge a branch into origin/staging and push it to origin/staging
     # Ex: git sb PRM-100
-    devint = !sh -c 'echo "Pushing $1 to devint..." && git fetch && git checkout devint && git reset --hard origin/devint && git pull origin $1 && git push origin devint && echo "Pushed $1 to devint."' -
+    devint = !sh -c 'echo "Pushing $1 to devint..." && git fetch && git checkout devint && git reset --hard origin/devint && git pull origin $1 && git push origin devint && echo "Pushed $1 to devint." && git checkout $1' -
     stage-branch = !sh -c 'echo "Staging $1..." && git fetch && git checkout staging && git reset --hard origin/staging && git pull origin $1 && git push origin staging && echo "Staged $1."' -
     sb = !sh -c 'git stage-branch $1' -
 
