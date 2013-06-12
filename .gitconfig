@@ -36,7 +36,6 @@
 
     # Shortcuts
     ca = commit -a
-    st = status
     ci = commit
     br = branch
     co = checkout
@@ -49,6 +48,20 @@
 
     # Get statistics for file changes
     diffstat = diff --stat -r
+
+    # from http://code.joejag.com/2013/everyday-git-aliases
+    standup = "!git log --since yesterday --author `git config user.email` --pretty=short"
+    purr = pull --rebase
+    st = status -sb
+    ready = rebase -i @{u}
+
+    # from http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+    assume = update-index --assume-unchanged
+    unassume = update-index --no-assume-unchanged
+    assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+    snapshot = !git stash save "snapsho: $(date)" && git stash apply "stash@{0}"
+
+    
 
 [help]
 	autocorrect = 1
@@ -63,6 +76,8 @@
 
 [diff]
         tool = diffmerge
+        algorithm = patience
+        
 [difftool "diffmerge"]
         cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
 [merge]
