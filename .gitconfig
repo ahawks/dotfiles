@@ -4,10 +4,11 @@
 [http]
 	sslverify = false
 [alias]
-	lg = log --oneline --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-	lgg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
-    #lg = log -p
-       # Merge a branch into origin/staging and push it to origin/staging
+    myhistory = log --oneline --color --date=short --all --pretty=format:'%Cred%h %Cgreen(%ad) %C(bold blue)<%an>%Creset -%C(yellow)%d%Creset %s%Creset' --abbrev-commit --author=aj.hawks
+    lg = log --oneline --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    lgg = log --graph --color --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+    # Merge a branch into origin/staging and push it to origin/staging
     # Ex: git sb PRM-100
     devint = !sh -c 'echo "Pushing $1 to devint..." && git fetch && git checkout devint && git reset --hard origin/devint && git pull origin $1 && git push origin devint && echo "Pushed $1 to devint." && git checkout $1' -
     stage-branch = !sh -c 'echo "Staging $1..." && git fetch && git checkout staging && git reset --hard origin/staging && git pull origin $1 && git push origin staging && echo "Staged $1."' -
@@ -76,15 +77,14 @@
 #    tool = opendiff
 
 [diff]
-        tool = diffmerge
+        tool = diffmerge.sh
         algorithm = patience
         
-[difftool "diffmerge"]
-        cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[difftool "diffmerge.sh"]
+        cmd = diffmerge.sh \"$LOCAL\" \"$REMOTE\"
 [merge]
-        tool = diffmerge
-[mergetool "diffmerge"]
-        cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+        tool = diffmerge.sh
+[mergetool "diffmerge.sh"]
+        cmd = "diffmerge.sh --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
             trustExitCode = true
 [gui]
-	recentrepo = /Users/andrewhawks/Documents/android

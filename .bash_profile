@@ -2,17 +2,22 @@ alias ll='ls -lG'
 alias ls='ls -G'
 alias hg='history | grep $*'
 alias p='cd ~/project/panama'
+alias c='cd ~/cha'
+
 alias gvim="open -a /Applications/MacVim.app"
+
+alias vmup='pushd ~/project/developer-vm && vagrant up && popd'
+alias vmdown='pushd ~/project/developer-vm && vagrant halt && popd'
 
 # add known_hosts to bash auto complete
 complete -W "$(echo `cat ~/.ssh/known_hosts |cut -f 1 -d ' ' |sed -e s/,.*//g |uniq |grep -v "\["`;)" ssh
 
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Users/ajhawks/bin:$PATH
+export PATH=/usr/local/git/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/Users/ajhawks/bin:$PATH
 export ARCHFLAGS="-arch x86_64"
 export WORKON_HOME=$HOME/.virtualenvs
 
 source /usr/local/bin/virtualenvwrapper.sh
-#source /usr/local/git/contrib/completion/git-completion.bash
+source /usr/local/git/contrib/completion/git-completion.bash
 
 # brew completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
@@ -46,3 +51,6 @@ UHP="${LEFT_BRACKET}\[$(tput setaf 2)\]\u\[$(tput setaf 1)\]@\[$(tput setaf 2)\]
 PS1="${CNUM}${UHP} \n\\$ \[$(tput sgr0)\]"
 
 
+
+# Pebble SDK
+export PATH=/Users/ajhawks/pebble-dev/PebbleSDK-current/bin:$PATH
